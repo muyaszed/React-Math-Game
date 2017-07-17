@@ -6,16 +6,65 @@ class Quiz extends Component {
 	constructor(props) {
 		super(props);
 		
-		let riddle = {
-			answerArray: [8,9,10,11],
-			field1: Math.floor(Math.random()*10),
-			field2: Math.floor(Math.random()*10),
-			answer: 10
-		};
+		let riddle = this.playGame();
 
 		this.state = {riddle}
 
 		this.renderAnswers = this.renderAnswers.bind(this);
+	}
+
+	genRandAnsw(sum) {
+		let result = sum;
+		let answerArray = [];
+		let randNumArr = [];
+
+		while (randNumArr.length <= 3) {
+			let randNum = this.randomNum(1,7);
+			if(randNumArr.indexOf(randNum) > -1) continue 
+			randNumArr.push(randNum);
+		}
+
+		for(let i=0; i<3; i++) {
+			let addSubtract = this.randomNum(0,1);
+
+			if (addSubtract === 1) {
+				result += randNumArr[i];
+				answerArray.push(result);
+			}else {
+				result -= randNumArr[i];
+				answerArray.push(result);
+			}
+
+		}
+		
+		
+		return answerArray;
+	}
+
+	randomNum(min, max) {
+		return Math.floor((Math.random()*(max-min)) + 1) + min;
+	}
+
+	playGame() {
+
+		let field1 = this.randomNum(10, 50);
+		let field2 = this.randomNum(10, 50);
+		let result = field1 + field2;
+		let answerArray = this.genRandAnsw(result);
+		answerArray.push(result);
+		answerArray.sort(function(a,b) {
+			return 0.5 - Math.random();
+		});
+		let riddle = {
+			answerArray: answerArray,
+			field1: field1,
+			field2: field2,
+			answer: result
+		};
+
+		return(
+			riddle
+		);
 	}
 
 	renderAnswers() {
