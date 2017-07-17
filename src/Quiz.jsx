@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Quiz.css';
 
 class Quiz extends Component {
 	render() {
@@ -9,7 +10,7 @@ class Quiz extends Component {
 				</div>
 
 				<div className="quiz-answer-content">
-					<div clasName="answer-container">
+					<div className="answer-container">
 						<div className="answer-box">2</div>
 						<div className="answer-box">2</div>
 						<div className="answer-box">2</div>
@@ -18,7 +19,7 @@ class Quiz extends Component {
 				</div>
 
 				<div className="play-again">
-					<button className="palya-again-button">Play</button>
+					<button className="palya-again-button">Play Again</button>
 				</div>
 			</div>
 		);

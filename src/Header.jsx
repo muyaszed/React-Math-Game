@@ -4,9 +4,9 @@ import './Header.css';
 class Header extends Component {
 	render() {
 		return(
-			<header> 
+			<div id="header"> 
 				<h1>Welcome to Ultimate math Game</h1>
-			</header>
+			</div>
 		);
 	}
 }

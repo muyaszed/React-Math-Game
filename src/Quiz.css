@@ -1,0 +1,42 @@
+.quiz-question-row {
+	background-color: wheat;
+}
+
+.quiz-question-content {
+	height: 50px;
+	
+	padding: 20px 0;
+}
+
+.quiz-question-content p {
+	font-size: 1.3em;
+	margin: 0;
+
+}
+
+.answer-container {
+	display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+   
+    
+}
+
+.answer-box {
+	background-color: cornflowerblue;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    font-size: 5em;
+}
+
+.play-again {
+	height: 50px;
+	padding: 0 30px;
+}
+
+.play-again button {
+	width: 100%;
+	height: 40px;
+}
