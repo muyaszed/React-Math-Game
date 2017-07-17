@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
 import './Quiz.css';
 import AnswerBox from './AnswerBox';
+import classNames from 'classnames';
 
 class Quiz extends Component {
 	constructor(props) {
 		super(props);
 		
 		let riddle = this.playGame();
+		let correct = false;
+		let gameOver = false;
 
-		this.state = {riddle}
+		this.state = {
+			riddle,
+			correct,
+			gameOver
+
+		}
 
 		this.renderAnswers = this.renderAnswers.bind(this);
+		this.checkAnswer = this.checkAnswer.bind(this);
+		this.playAgain = this.playAgain.bind(this);
 	}
 
 	genRandAnsw(sum) {
@@ -62,21 +72,59 @@ class Quiz extends Component {
 			answer: result
 		};
 
-		return(
-			riddle
-		);
+		if (this.state && this.state.gameOver) {
+			this.setState({riddle: riddle});
+		}else {
+			return riddle;	
+		}
+
+		
+	}
+
+	checkAnswer(val) {
+		if (val === this.state.riddle.answer) {
+			console.log("your answer is correct");
+			this.setState({
+				correct: true,
+				gameOver: true
+			});
+		}else {
+			this.setState({
+				correct: false,
+				gameOver: true
+			});
+			console.log("your answer is incorrect");
+			
+		}
+		console.log("answer is "+val);
 	}
 
 	renderAnswers() {
 		return(
 			<div className="answer-container">
 				{this.state.riddle.answerArray.map((answer, i) => 
-					<AnswerBox answerValue={answer} key={i}/>	
+					<AnswerBox answerValue={answer} key={i} checkAnswer={this.checkAnswer}/>	
 				)}
 				
 						
 			</div>
 		);
+	}
+
+	playAgain() {
+		this.setState({
+			correct: false,
+			gameOver: false
+		});
+		this.playGame();
+	}
+
+	renderAnswerMessage() {
+		if (this.state.correct) {
+			return <h3>Good Job! Please click the button below to play again.</h3>
+		}else {
+			return <h3>Sorry! Please click the button below to play again.</h3>
+		}
 	}
 
 	render() {
@@ -93,7 +141,11 @@ class Quiz extends Component {
 				</div>
 
 				<div className="play-again">
-					<button className="palya-again-button">Play Again</button>
+					<button className="play-again-button" onClick={this.playAgain}>Play Again</button>
+				</div>
+
+				<div className={classNames('modal', {'hide': !this.state.gameOver}, {'bg-red': !this.state.riddle.correct}, {'bg-green': this.state.correct})}>
+					{this.renderAnswerMessage()}
 				</div>
 			</div>
 		);

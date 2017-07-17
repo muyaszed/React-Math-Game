@@ -29,6 +29,7 @@
     height: 100px;
     margin: 10px;
     font-size: 5em;
+    cursor: pointer;
 }
 
 .play-again {
@@ -40,3 +41,26 @@
 	width: 100%;
 	height: 40px;
 }
+
+.modal {
+	height: 200px;
+	width: 100vw;
+	position: absolute;
+	top: 100px;
+}
+
+.bg-red {
+	background-color: red;
+}
+
+.bg-green {
+	background-color: green;
+}
+
+.hide {
+	display: none;
+}
+
+
+
+
