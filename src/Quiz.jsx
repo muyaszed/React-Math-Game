@@ -103,8 +103,7 @@ class Quiz extends Component {
 		return(
 			<div className="answer-container">
 				{this.state.riddle.answerArray.map((answer, i) => 
-					<AnswerBox answerValue={answer} key={i} checkAnswer={this.checkAnswer}/>	
-				)}
+					<AnswerBox answerValue={answer} key={i} checkAnswer={this.checkAnswer}/> )}
 				
 						
 			</div>
